@@ -1,0 +1,10 @@
+defaults:
+  - datasets: gaussianiid_sigma05
+  - scalar_metrics: gaussian
+  - scalar_aggregators: all
+  - _self_
+
+coefs_dir: saved
+save_dir: saved_metrics
+run_name: gaussianiid_sigma05
+override: true

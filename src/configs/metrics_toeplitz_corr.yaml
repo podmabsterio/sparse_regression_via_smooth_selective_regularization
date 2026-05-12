@@ -1,0 +1,10 @@
+defaults:
+  - datasets: topeplitz_pho05
+  - scalar_metrics: toeplitz
+  - scalar_aggregators: all
+  - _self_
+
+coefs_dir: saved
+save_dir: saved_metrics
+run_name: topeplitz_pho05
+override: true

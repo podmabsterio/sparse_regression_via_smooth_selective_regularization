@@ -1,0 +1,10 @@
+_target_: src.datasets.BlockCorrDatasets
+num_datasets: 100
+n: 250
+p: 1000
+s: 10
+rho: 0.5
+noise_std: 0.5
+group_size: 10
+active_groups: 5
+test_fraction: 10.0

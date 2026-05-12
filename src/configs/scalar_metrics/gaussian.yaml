@@ -1,0 +1,4 @@
+ - _target_: src.metrics.F1
+   threshold: 1e-3
+ - _target_: src.metrics.MAVi
+ - _target_: src.metrics.EstimationError

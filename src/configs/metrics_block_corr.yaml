@@ -1,0 +1,10 @@
+defaults:
+  - datasets: block_corr_rho05
+  - scalar_metrics: block
+  - scalar_aggregators: all
+  - _self_
+
+coefs_dir: saved
+save_dir: saved_metrics
+run_name: block_corr_rho05
+override: true

@@ -1,0 +1,2 @@
+ - _target_: src.metrics.MeanAggregator
+ - _target_: src.metrics.StdAggregator

@@ -1,0 +1,24 @@
+defaults:
+  - datasets: gaussianiid_sigma05_large
+  - _self_
+
+Lambda: 40
+M: 1e7
+models:
+  MainModel:
+    _target_: src.models.MainModel
+    tol: 1e-6
+    M: ${M}
+    Lambda: ${Lambda}
+
+  MainModelNoiseless:
+    _target_: src.models.MainModelNoiseless
+    tol: 1e-6
+    M: ${M}
+    Lambda: ${Lambda}
+
+save_dir: saved_correction
+run_name: lam50
+override: true
+trainer:
+  _target_: src.trainers.ParallelTrainer

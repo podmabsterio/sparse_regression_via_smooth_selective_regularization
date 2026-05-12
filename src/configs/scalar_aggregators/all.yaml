@@ -1,0 +1,4 @@
+ - _target_: src.metrics.MeanAggregator
+ - _target_: src.metrics.StdAggregator
+ - _target_: src.metrics.MedianAggregator
+ - _target_: src.metrics.IQRAggregator

@@ -1,0 +1,7 @@
+ - _target_: src.metrics.F1
+   threshold: 1e-3
+ - _target_: src.metrics.MAVi
+ - _target_: src.metrics.EstimationError
+ - _target_: src.metrics.PredictionErrorBlock
+   rho: 0.5
+   group_size: 10

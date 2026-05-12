@@ -1,0 +1,7 @@
+_target_: src.datasets.GaussianIIDatasets
+num_datasets: 100
+n: 125
+p: 1000
+s: 10
+noise_std: 0.5
+test_fraction: 10.0

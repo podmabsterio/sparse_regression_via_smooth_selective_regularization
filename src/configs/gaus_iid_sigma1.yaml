@@ -1,0 +1,171 @@
+defaults:
+  - datasets: gaussianiid_sigma1
+  - _self_
+
+models:
+  MainModelCV:
+    _target_: src.models.CVWrapper
+    model:
+      _target_: src.models.WrappedMainModel
+      M: 1e7
+      tol: 1e-6
+    cv: 5
+    param_values: ${logspace:0, 2, 20}
+
+  Lasso_CV:
+    _target_: src.models.CVWrapper
+    model:
+      _target_: src.models.WrappedLasso
+      tol: 1e-6
+    cv: 5
+    params_num: 100
+    min_ratio: 0.05
+
+  Lasso_EBIC_1:
+    _target_: src.models.EBICWrapper
+    model:
+      _target_: src.models.WrappedLasso
+      tol: 1e-6
+    gamma: 1.0
+    params_num: 100
+    min_ratio: 0.05
+
+  Lasso_EBIC_05:
+    _target_: src.models.EBICWrapper
+    model:
+      _target_: src.models.WrappedLasso
+      tol: 1e-6
+    gamma: 0.5
+    params_num: 100
+    min_ratio: 0.05
+
+  Lasso_CV_one_se:
+    _target_: src.models.CVWrapperOneSE
+    model:
+      _target_: src.models.WrappedLasso
+      tol: 1e-6
+    cv: 5
+    maximize_param: true
+    params_num: 100
+    min_ratio: 0.05
+
+  SCAD_CV:
+    _target_: src.models.CVWrapper
+    model:
+      _target_: src.models.WrappedSCAD
+      tol: 1e-6
+      ws_strategy: fixpoint
+    cv: 5
+    params_num: 100
+    min_ratio: 0.05
+
+  SCAD_EBIC_1:
+    _target_: src.models.EBICWrapper
+    model:
+      _target_: src.models.WrappedSCAD
+      tol: 1e-6
+      ws_strategy: fixpoint
+    gamma: 1.0
+    params_num: 100
+    min_ratio: 0.05
+
+  SCAD_EBIC_05:
+    _target_: src.models.EBICWrapper
+    model:
+      _target_: src.models.WrappedSCAD
+      tol: 1e-6
+      ws_strategy: fixpoint
+    gamma: 0.5
+    params_num: 100
+    min_ratio: 0.05
+
+  SCAD_CV_one_se:
+    _target_: src.models.CVWrapperOneSE
+    model:
+      _target_: src.models.WrappedSCAD
+      tol: 1e-6
+      ws_strategy: fixpoint
+    cv: 5
+    maximize_param: true
+    params_num: 100
+    min_ratio: 0.05
+
+  MCP_CV:
+    _target_: src.models.CVWrapper
+    model:
+      _target_: src.models.WrappedMCP
+      tol: 1e-6
+      ws_strategy: fixpoint
+    cv: 5
+    params_num: 100
+    min_ratio: 0.05
+
+  MCP_EBIC_1:
+    _target_: src.models.EBICWrapper
+    model:
+      _target_: src.models.WrappedMCP
+      tol: 1e-6
+      ws_strategy: fixpoint
+    gamma: 1.0
+    params_num: 100
+    min_ratio: 0.05
+
+  MCP_EBIC_05:
+    _target_: src.models.EBICWrapper
+    model:
+      _target_: src.models.WrappedMCP
+      tol: 1e-6
+      ws_strategy: fixpoint
+    gamma: 0.5
+    params_num: 100
+    min_ratio: 0.05
+
+  MCP_CV_one_se:
+    _target_: src.models.CVWrapperOneSE
+    model:
+      _target_: src.models.WrappedMCP
+      tol: 1e-6
+      ws_strategy: fixpoint
+    cv: 5
+    maximize_param: true
+    params_num: 100
+    min_ratio: 0.05
+
+  OMP_CV:
+    _target_: src.models.CVWrapper
+    model:
+      _target_: src.models.WrappedOMP
+    cv: 5
+    param_values: ${range:1, 31}
+
+  OMP_EBIC_1:
+    _target_: src.models.EBICWrapper
+    model:
+      _target_: src.models.WrappedOMP
+    gamma: 1.0
+    param_values: ${range:1, 31}
+
+  OMP_EBIC_05:
+    _target_: src.models.EBICWrapper
+    model:
+      _target_: src.models.WrappedOMP
+    gamma: 0.5
+    param_values: ${range:1, 31}
+
+  OMP_CV_one_se:
+    _target_: src.models.CVWrapperOneSE
+    model:
+      _target_: src.models.WrappedOMP
+    cv: 5
+    maximize_param: false
+    param_values: ${range:1, 31}
+
+  Oracle:
+    _target_: src.models.OracleEstimator
+
+
+save_dir: saved
+run_name: gaussianiid_sigma1
+override: false
+trainer:
+  _target_: src.trainers.ParallelTrainer
